@@ -91,5 +91,4 @@ text = "Caps Sensitive"
 layout_mode = 2
 text = "Punctuation Sensitive"
 
-[connection signal="text_set" from="UserEntry" to="." method="_on_user_entry_text_set"]
 [connection signal="pressed" from="CheckButton" to="." method="_on_check_button_pressed"]
