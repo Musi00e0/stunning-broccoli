@@ -1,10 +1,13 @@
 extends Control
 
 var m_Reference : Label
+var m_ReferenceCitation : Label
 var m_UserEntry : TextEdit
+var m_UserCitation : TextEdit
 var m_CorrectIndicator : Label
 var m_CapsSensitive : CheckBox
 var m_PunctuationSensitive : CheckBox
+var m_QuizCitation : CheckBox
 
 var m_NoPunctuationRegex : RegEx
 
@@ -14,10 +17,16 @@ func _init() -> void:
 
 func _ready() -> void:
 	m_Reference = $Reference
+	m_ReferenceCitation = $ReferenceCitation
 	m_UserEntry = $UserEntry
+	m_UserCitation = $UserCitation
 	m_CorrectIndicator = $CorrectIndicator
 	m_CapsSensitive = $Options/CapsToggle
 	m_PunctuationSensitive = $Options/PunctuationToggle
+	m_QuizCitation = $Options/CitationToggle
+
+	# Configure the citation UI elements so that only one, not both are visible
+	_on_citation_toggle_pressed()
 	
 func _strip_punctuation(in_string:String) -> String:
 	var s = ""
@@ -54,3 +63,8 @@ func _on_check_button_pressed() -> void:
 		m_CorrectIndicator.text = "Correct!"
 	else:
 		m_CorrectIndicator.text = "Wrong!"
+
+
+func _on_citation_toggle_pressed() -> void:
+	m_UserCitation.visible		=  m_QuizCitation.button_pressed
+	m_ReferenceCitation.visible	= !m_QuizCitation.button_pressed

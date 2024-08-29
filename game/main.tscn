@@ -61,19 +61,26 @@ drag_and_drop_selection_enabled = false
 middle_mouse_paste_enabled = false
 wrap_mode = 1
 
-[node name="UserCitation" type="Label" parent="."]
+[node name="UserCitation" type="TextEdit" parent="."]
+clip_contents = false
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.9
 anchor_right = 0.5
-anchor_bottom = 0.9
+anchor_bottom = 1.0
 offset_left = 50.0
-offset_top = 12.5
+offset_top = -25.0
 offset_right = -50.0
+offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 36
-autowrap_mode = 3
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+drag_and_drop_selection_enabled = false
+middle_mouse_paste_enabled = false
+wrap_mode = 1
 
 [node name="CheckButton" type="Button" parent="."]
 layout_mode = 1
@@ -126,3 +133,4 @@ layout_mode = 2
 text = "Quiz Citation"
 
 [connection signal="pressed" from="CheckButton" to="." method="_on_check_button_pressed"]
+[connection signal="pressed" from="Options/CitationToggle" to="." method="_on_citation_toggle_pressed"]
