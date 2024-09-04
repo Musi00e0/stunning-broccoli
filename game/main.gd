@@ -36,7 +36,7 @@ func _strip_punctuation(in_string:String) -> String:
 	
 	return s.strip_edges()
 	
-func get_text_after_options(in_string:String) -> String:
+func get_text_after_options(in_string:String, in_citation:String) -> String:
 	var s:String = in_string
 	
 	# First get the punctuation out, or if we're checking punctuation, take the reference string as-is
@@ -46,15 +46,20 @@ func get_text_after_options(in_string:String) -> String:
 	# Now handle capitalization
 	if not m_CapsSensitive.button_pressed:
 		s = s.to_lower()
+		in_citation = in_citation.to_lower()
 	
 	# Now strip leading, or likely trailing, whitespace
 	s = s.strip_edges()
+
+	# If the user is quizzing the citation too, append it
+	if m_QuizCitation.button_pressed:
+		s += "|" + in_citation
 	
 	return s
 
 func _on_check_button_pressed() -> void:
-	var ref_text:String = get_text_after_options(m_Reference.text)
-	var user_text:String = get_text_after_options(m_UserEntry.text)
+	var ref_text:String = get_text_after_options(m_Reference.text, m_ReferenceCitation.text)
+	var user_text:String = get_text_after_options(m_UserEntry.text, m_UserCitation.text)
 	
 	print("Ref Text: ", ref_text)
 	print("User Text: ", user_text)
